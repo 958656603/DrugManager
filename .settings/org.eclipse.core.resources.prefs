@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/jsp/index.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/list.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/saleAdd.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/saleEdit.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/stockDrugAdd.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/stockEdit.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/stocklist.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/userAdd.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/userEdit.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/userlist.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/wareAdd.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/wareEdit.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/warelist.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/welcome.jsp=UTF-8

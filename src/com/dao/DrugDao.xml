@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DrugDao">
+	
+	
+	<!-- //库存表操作 -->
+	<select id="queryAllWareDrug" resultType="com.bean.Warehouse">
+		select * from warehouse
+	</select>
+	
+	<update id="editWarehouse" parameterType="com.bean.Warehouse">
+		update warehouse set manufacturer=#{manufacturer},standard=#{standard},sale_price=#{sale_price},drug_id=#{drug_id},stock_number=#{stock_number} where id=#{id}
+	</update>
+	
+	<insert id="addWarehouse" parameterType="com.bean.Warehouse">
+		insert into warehouse(drug_id,manufacturer,standard,stock_number,sale_price) values(#{drug_id},#{manufacturer},#{standard},#{stock_number},#{sale_price})
+	</insert>
+	
+	<select id="findWareById" parameterType="int" resultType="com.bean.Warehouse">
+		select * from warehouse where id = #{id}
+	</select>
+	
+	<select id="findWareByDrugId" parameterType="string" resultType="com.bean.Warehouse">
+		select * from warehouse where drug_id = #{drug_id}
+	</select>
+	
+	<!-- 进药表操作 -->
+	
+	<select id="queryAllStockDrug" resultType="com.bean.StockDrug">
+		select * from stockdrug
+	</select>
+	
+	<insert id="addStockDrug" parameterType="com.bean.StockDrug">
+		insert into stockdrug(bill_id,drug_id,price,buy_num,date,supplier) values(#{bill_id},#{drug_id},#{price},#{buy_num},#{date},#{supplier})
+	</insert>
+	
+	<update id="editStockDrug" parameterType="com.bean.StockDrug">
+		update stockdrug set bill_id=#{bill_id},drug_id=#{drug_id},price=#{price},buy_num=#{buy_num},date=#{date},supplier=#{supplier} where id=#{id}
+	</update>
+	
+	<!-- 售药表操作 -->
+	
+	<select id="queryAllSaleDrug" resultType="com.bean.SaleDrug">
+		select * from saledrug
+	</select>
+	
+	<insert id="addSaleDrug" parameterType="com.bean.SaleDrug">
+		insert into saledrug(customer_id,drug_id,sale_number,date,price) values(#{customer_id},#{drug_id},#{sale_number},#{date},#{price})
+	</insert>
+	
+	<update id="editSaleDrug" parameterType="com.bean.SaleDrug">
+		update saledrug set customer_id=#{customer_id},drug_id=#{drug_id},sale_number=#{sale_number},date=#{date},price=#{price} where id=#{id}
+	</update>
+	
+	<delete id="delSale" parameterType="int">
+		delete from saledrug where id=#{id}
+	</delete>
+	
+	<sql id="findsql1">
+		<where>
+			<if test="drug_id !=null and drug_id != ''">
+				and drug_id = #{drug_id}
+			</if>
+			
+		</where>
+	</sql>
+	
+	<select id="queryWareByCondition" parameterType="com.bean.Warehouse" resultType="com.bean.Warehouse">
+		select * from warehouse
+		<include refid="findsql1">
+		</include>
+	</select>
+	
+	<sql id="findsql2">
+		<where>
+			<if test="drug_id !=null and drug_id != ''">
+				and drug_id = #{drug_id}
+			</if>
+			
+			<if test="date !=null and date !=''">
+				and date = #{date}
+			</if>
+			
+			<if test="supplier!=null and supplier !=''">
+				and supplier = #{supplier}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="queryStockByCondition" parameterType="com.bean.StockDrug" resultType="com.bean.StockDrug">
+		select * from stockdrug 
+		<include refid="findsql2">
+		</include>
+	</select>
+	
+	<sql id="findsql3">
+		<where>
+			<if test="drug_id!=null and drug_id != ''">
+				and drug_id = #{drug_id}
+			</if>
+			
+			<if test="date!=null and date !=''">
+				and date = #{date}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="querySaleByCondition" parameterType="com.bean.SaleDrug" resultType="com.bean.SaleDrug">
+		select * from saledrug 
+		<include refid="findsql3">
+		</include>
+	</select>
+		
+	<!-- <select id="queryByCondition" parameterType="com.bean.User" resultType="com.bean.User">
+		select * from user where username=#{username} and password=#{password}
+	</select>
+	
+	
+	<select id="findUserByName" parameterType="string" resultType="com.bean.User">
+		select * from user where username=#{username}
+	</select>
+	
+	<delete id="delUser" parameterType="int">
+		delete from user where id = #{id}
+	</delete>
+	
+	<update id="edit" parameterType="com.bean.User">修改职员的方法
+		update user set password=#{password},usertype=#{usertype} where id=#{id}
+	</update>
+	
+	
+	
+	<sql id="findsql">
+		<where>
+			<if test="username!=null and username != ''">
+				and username = #{username}
+			</if>
+			
+			<if test="usertype!=null and usertype !=''">
+				and usertype = #{usertype}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="queryUserByCondition" parameterType="com.bean.User" resultType="com.bean.User">
+		select * from user 
+		<include refid="findsql">
+		</include>
+	</select> -->
+	
+</mapper>

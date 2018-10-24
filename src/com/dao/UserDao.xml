@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserDao">
+		
+	<select id="queryByCondition" parameterType="com.bean.User" resultType="com.bean.User">
+		select * from user where username=#{username} and password=#{password}
+	</select>
+	
+	<select id="queryAllUser" resultType="com.bean.User">
+		select * from user
+	</select>
+	
+	<select id="findUserByName" parameterType="string" resultType="com.bean.User">
+		select * from user where username=#{username}
+	</select>
+	
+	<delete id="delUser" parameterType="int">
+		delete from user where id = #{id}
+	</delete>
+	
+	<update id="edit" parameterType="com.bean.User"><!-- 修改职员的方法 -->
+		update user set password=#{password},usertype=#{usertype} where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.bean.User">
+		insert into user(username,password,usertype) values(#{username},#{password},#{usertype})
+	</insert>
+	
+	<sql id="findsql">
+		<where>
+			<if test="username!=null and username != ''">
+				and username = #{username}
+			</if>
+			
+			<if test="usertype!=null and usertype !=''">
+				and usertype = #{usertype}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="queryUserByCondition" parameterType="com.bean.User" resultType="com.bean.User">
+		select * from user 
+		<include refid="findsql">
+		</include>
+	</select>
+	
+</mapper>
